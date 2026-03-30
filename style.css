@@ -1,204 +1,244 @@
-/* ==================================== 
-   ANIME TECH STYLE - CURRÍCULO 2026
-   ==================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@300;400;700&display=swap');
-
+/* --- CONFIGURAÇÕES GERAIS E CORES --- */
 :root {
-    --primary-neon: #00ff9d; /* Verde Matrix/Cyber */
-    --accent-pink: #ff007a;  /* Rosa Choque Anime */
-    --deep-space: #050505;   /* Fundo quase preto */
-    --manga-white: #f0f0f0;
-    --glass-cyan: rgba(0, 255, 255, 0.1);
+    --bg-color: #050509; /* Quase preto */
+    --panel-bg: #10101a;
+    --text-primary: #e0e0f0;
+    --text-secondary: #a0a0b0;
+    --neon-green: #00ff41; /* Estilo Matrix/Terminal */
+    --neon-pink: #ff2a6d; /* Estilo Cyberpunk */
+    --neon-cyan: #05d9e8;
+    --border-manga: #ffffff;
+    --font-tech: 'Press Start 2P', cursive;
+    --font-body: 'Space Grotesk', sans-serif;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: crosshair; /* Cursor de "mira" para engajamento tech */
 }
 
-body {
-    background-color: var(--deep-space);
-    background-image: 
-        radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
-    background-size: 32px 32px; /* Grid de fundo tech */
-    color: var(--manga-white);
-    font-family: 'Outfit', sans-serif;
+body.cyber-theme {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
     line-height: 1.6;
 }
 
-/* ==================================== 
-   HEADER: IMPACTO "SHONEN"
-   ==================================== */
-.header {
-    height: 70vh;
+/* Efeito de Linhas de Scan de monitor antigo */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* --- CABEÇALHO --- */
+.cyber-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(45deg, #000 30%, var(--accent-pink) 200%);
-    position: relative;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--neon-green);
+}
+
+.profile-pic-frame {
+    width: 150px; height: 150px;
+    border: 4px solid var(--border-manga);
     overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); /* Corte diagonal manga */
+    position: relative;
+    box-shadow: 0 0 15px var(--neon-green);
 }
 
-.title-anime {
-    font-family: 'Bangers', cursive; /* Fonte estilo quadrinhos */
-    font-size: 5rem;
-    letter-spacing: 4px;
-    color: white;
-    text-transform: uppercase;
-    text-shadow: 5px 5px 0px var(--accent-pink), 10px 10px 0px var(--primary-neon);
-    animation: titleEntrance 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.profile-pic {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    transition: 0.5s;
 }
 
-@keyframes titleEntrance {
-    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+.profile-pic-frame:hover .profile-pic {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.1);
 }
 
-/* ==================================== 
-   NAVBAR: FLOATING TECH
-   ==================================== */
-.navbar {
-    background: rgba(0, 0, 0, 0.9);
-    border-bottom: 2px solid var(--primary-neon);
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 999;
+/* EFEITO GLITCH NO TÍTULO */
+.glitch-title {
+    font-family: var(--font-tech);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    position: relative;
 }
 
-.nav-links {
+.glitch-title::before, .glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+}
+
+.glitch-title::before {
+    left: 2px; text-shadow: -2px 0 var(--neon-pink);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+    left: -2px; text-shadow: -2px 0 var(--neon-cyan);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); }
+    100% { clip-path: inset(5% 0 80% 0); }
+}
+
+.cyber-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    min-height: 1.6rem;
+}
+
+/* --- NAVEGAÇÃO / FILTROS --- */
+.cyber-nav { margin-bottom: 2rem; }
+.cyber-nav ul {
+    list-style: none;
     display: flex;
     justify-content: center;
-    gap: 30px;
-    list-style: none;
+    gap: 1rem;
 }
 
-.nav-link {
-    color: var(--primary-neon);
-    text-decoration: none;
-    font-weight: 700;
-    text-transform: uppercase;
+.nav-btn {
+    background: transparent;
+    border: 2px solid var(--border-manga);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-weight: bold;
+    cursor: pointer;
     transition: 0.3s;
-    border: 1px solid transparent;
-    padding: 5px 15px;
 }
 
-.nav-link:hover {
-    background: var(--primary-neon);
-    color: black;
-    box-shadow: 0 0 15px var(--primary-neon);
-    transform: skewX(-10deg);
+.nav-btn:hover, .nav-btn.active {
+    background-color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px var(--neon-cyan);
 }
 
-/* ==================================== 
-   CONTAINER & CARDS "MANGA PANELS"
-   ==================================== */
-.container {
-    max-width: 1000px;
-    margin: 40px auto;
+/* --- GRID DE PAINÉIS (Estilo Mangá) --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border: 3px solid var(--border-manga);
     padding: 20px;
-}
-
-.skill-card, .project-card {
-    background: var(--glass-cyan);
-    border-left: 5px solid var(--accent-pink);
-    border-right: 2px solid var(--primary-neon);
-    padding: 25px;
-    margin-bottom: 30px;
-    backdrop-filter: blur(5px);
-    transition: 0.4s;
     position: relative;
+    transition: 0.3s;
+    display: none; /* Escondido por padrão para o filtro JS */
 }
 
-.skill-card:hover {
-    transform: translateX(10px);
-    background: rgba(255, 0, 122, 0.05);
+.panel.active { display: block; } /* Mostrar quando ativo */
+
+.panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px var(--neon-pink);
 }
 
-.section-title {
-    font-family: 'Bangers', cursive;
-    font-size: 2.5rem;
-    color: var(--primary-neon);
-    margin-bottom: 20px;
+.panel-header {
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--text-secondary);
+    padding-bottom: 10px;
 }
 
-/* BARRAS DE SKILL ESTILO LOADING GAME */
+.panel-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.panel-icon { font-size: 1.4rem; }
+
+/* Barras de Skills */
+.skill-list { list-style: none; }
+.skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill-name { font-weight: bold; color: var(--text-secondary); }
+
 .skill-bar {
-    width: 100%;
-    height: 12px;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    margin-top: 8px;
-    position: relative;
+    width: 60%; height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .skill-progress {
     height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--primary-neon),
-        var(--primary-neon) 10px,
-        #00cc7a 10px,
-        #00cc7a 20px
-    );
-    box-shadow: 0 0 10px var(--primary-neon);
+    background-color: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+    width: 0%; /* Começa em 0 para animação JS futura */
+    transition: width 1s ease-in-out;
 }
 
-/* ==================================== 
-   PROJETOS: GRID DINÂMICO
-   ==================================== */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+/* Badges (Metodologias) */
+.badge-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.project-card h3 {
-    color: var(--accent-pink);
+.badge {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+/* Projetos */
+.project-item {
+    background-color: rgba(255,255,255,0.05);
+    padding: 10px;
     margin-bottom: 10px;
 }
+.project-item h3 { font-size: 1rem; color: var(--neon-cyan); }
 
-/* FOOTER */
-.footer {
+/* --- RODAPÉ TERMINAL --- */
+.cyber-footer {
+    margin-top: 3rem;
+    padding: 1rem;
+    border-top: 2px solid var(--neon-green);
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
     text-align: center;
-    padding: 50px;
-    background: linear-gradient(to top, var(--accent-pink), transparent);
-    color: white;
-    font-weight: bold;
-    margin-top: 100px;
 }
 
-/* EFEITO DE SCANLINE (TV ANTIGA / TECH) */
-body::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    z-index: 2;
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none;
-}
+.status-ok { color: var(--neon-green); animation: blink 1s infinite; }
+.cyber-footer a { color: var(--neon-cyan); text-decoration: none; }
 
-
-/* Transição suave para a interação do JS */
-.skill-card, .project-card, .nav-link {
-    transition: transform 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
-}
-
-/* Efeito de brilho pulsante no título */
-.title-anime {
-    animation: neonPulse 2s infinite alternate;
-}
-
-@keyframes neonPulse {
-    from { text-shadow: 5px 5px 0px var(--accent-pink), 0 0 10px var(--primary-neon); }
-    to { text-shadow: 5px 5px 0px var(--accent-pink), 0 0 30px var(--primary-neon), 0 0 50px var(--accent-pink); }
-}
+@keyframes blink { 50% { opacity: 0; } }

@@ -1,33 +1,39 @@
-// Sons de interface em Base64 (pequenos bips rápidos para não precisar de arquivos externos)
-const hoverSound = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YT9vT18A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8=");
-hoverSound.volume = 0.1;
+// 1. EFEITO TYPEWRITER (Máquina de Escrever no Subtítulo)
+const subtitleText = "> Aluno do Ensino Médio Profissionalizante | Back-end | Python | Ágeis_";
+const typewriterElement = document.getElementById("typewriter-subtitle");
+let i = 0;
 
-const clickSound = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YT9vT18A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8=");
-clickSound.volume = 0.3;
+function typeWriter() {
+    if (i < subtitleText.length) {
+        typewriterElement.innerHTML += subtitleText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50); // Velocidade da digitação (ms)
+    }
+}
 
-// Seleciona todos os cards e links
-const interactiveElements = document.querySelectorAll('.skill-card, .project-card, .nav-link, .contact-link');
+// Inicia o efeito assim que a página carrega
+window.onload = typeWriter;
 
-interactiveElements.forEach(el => {
-    // Efeito ao passar o mouse
-    el.addEventListener('mouseenter', () => {
-        hoverSound.currentTime = 0;
-        hoverSound.play().catch(() => {}); // Ignora erro se o user não interagiu ainda
-        
-        // Efeito visual de tremor rápido (Glitch)
-        el.style.transform = `translate(${Math.random() * 4 - 2}px, ${Math.random() * 4 - 2}px) skewX(-2deg)`;
-    });
+// 2. SISTEMA DE FILTRO DE PAINÉIS (Navegação Interativa)
+const navButtons = document.querySelectorAll(".nav-btn");
+const panels = document.querySelectorAll(".panel");
 
-    el.addEventListener('mouseleave', () => {
-        el.style.transform = `translate(0, 0) skewX(0deg)`;
-    });
+navButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        // Remove classe ativo de todos os botões e adiciona no clicado
+        navButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
 
-    // Efeito ao clicar
-    el.addEventListener('click', () => {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
+        const filterValue = button.getAttribute("data-filter");
+
+        // Lógica de filtragem
+        panels.forEach(panel => {
+            // Se "all", mostra todos, senão, verifica se a classe corresponde
+            if (filterValue === "all" || panel.classList.contains(`item-${filterValue}`)) {
+                panel.classList.add("active");
+            } else {
+                panel.classList.remove("active");
+            }
+        });
     });
 });
-
-// Mensagem no Console para Engajamento
-console.log("%c SYSTEM INITIALIZED: MANGA-TECH-V1 ", "background: #00ff9d; color: #000; font-weight: bold; padding: 5px;");

@@ -3,58 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currículo Técnico | Dev Systems</title>
+    <title>Curriculo Digital v1.0 | Student_OS</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="cyber-theme">
 
-    <header class="header">
-        <div class="header-content">
-            <h1 class="title-anime">Desenvolvedor de Sistemas</h1>
-            <p class="subtitle">2º Ano - Educação Profissional Paulista</p>
-            <div class="tech-badges">
-                <span class="badge badge-python">Python</span>
-                <span class="badge badge-networks">Redes & Seg</span>
-                <span class="badge badge-backend">Backend</span>
-            </div>
-        </div>
-    </header>
+    <div class="scanlines"></div>
 
-    <nav class="navbar">
-        <ul class="nav-links">
-            <li><a href="#sobre" class="nav-link">Sobre</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#projetos" class="nav-link">Projetos</a></li>
-            <li><a href="#carreira" class="nav-link">Carreira</a></li>
-        </ul>
-    </nav>
-
-    <main class="container">
-        <section id="sobre" class="skill-card">
-            <h2 class="section-title">⚡ Sobre Mim</h2>
-            <p>Desenvolvedor em formação focado em tecnologias backend e segurança de sistemas. Apaixonado por resolver problemas complexos usando Python.</p>
-        </section>
-
-        <section id="skills" class="section">
-            <h2 class="section-title">🔧 Competências</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>🐍 Python</h3>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    <p>POO, NumPy, Pandas e Flask.</p>
-                </div>
-                <div class="project-card">
-                    <h3>🔐 Segurança</h3>
-                    <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div>
-                    <p>TCP/IP, Criptografia e Firewall.</p>
+    <div class="main-container">
+        
+        <header class="cyber-header">
+            <div class="profile-area">
+                <div class="profile-pic-frame">
+                    <img src="https://i.pinimg.com/736x/8f/c3/8c/8fc38c93540ce895240224959db65391.jpg" alt="Avatar do Aluno" class="profile-pic">
                 </div>
             </div>
-        </section>
-    </main>
+            <div class="title-area">
+                <h1 class="glitch-title" data-text="&gt; NOME_DO_ALUNO.EXE_">&gt; NOME_DO_ALUNO.EXE_</h1>
+                <p id="typewriter-subtitle" class="cyber-subtitle"></p>
+            </div>
+        </header>
 
-    <footer class="footer">
-        <p>© 2026 | Desenvolvido com código e café ☕</p>
-    </footer>
+        <nav class="cyber-nav">
+            <ul>
+                <li><button class="nav-btn active" data-filter="all">Status Geral</button></li>
+                <li><button class="nav-btn" data-filter="tech">Hard Skills</button></li>
+                <li><button class="nav-btn" data-filter="soft">Soft Skills</button></li>
+                <li><button class="nav-btn" data-filter="projetos">Projetos</button></li>
+            </ul>
+        </nav>
 
+        <main class="content-grid manga-panels">
+
+            <section class="panel about-panel item-all active">
+                <div class="panel-header">
+                    <span class="panel-icon">👤</span>
+                    <h2>Status: Objetivo Profissional</h2>
+                </div>
+                <div class="panel-body">
+                    <p class="terminal-text">Desenvolvedor em formação focado em tecnologias back-end e segurança de sistemas. Apaixonado por resolver problemas complexos usando Python e construir soluções escaláveis. Buscando crescimento contínuo no mercado tech.</p>
+                </div>
+                <div class="panel-decoration"></div>
+            </section>
+
+            <section class="panel skills-panel item-tech active">
+                <div class="panel-header">
+                    <span class="panel-icon">🔧</span>
+                    <h2>Habilidades Técnicas</h2>
+                </div>
+                <div class="panel-body">
+                    <ul class="skill-list">
+                        <li><span class="skill-name">Python:</span> <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div></li>
+                        <li><span class="skill-name">Lógica:</span> <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div></li>
+                        <li><span class="skill-name">Back-end:</span> <div class="skill-bar"><div class="skill-progress" style="width: 75%;"></div></div></li>
+                        <li><span class="skill-name">Redes:</span> <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div></li>
+                        <li><span class="skill-name">Segurança:</span> <div class="skill-bar"><div class="skill-progress" style="width: 70%;"></div></div></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="panel competences-panel item-soft active">
+                <div class="panel-header">
+                    <span class="panel-icon">🤝</span>
+                    <h2>Competências de Mercado</h2>
+                </div>
+                <div class="panel-body">
+                    <ul class="badge-list">
+                        <li class="badge">Metodologias Ágeis</li>
+                        <li class="badge">Scrum/Kanban</li>
+                        <li class="badge">Trabalho em Equipe</li>
+                        <li class="badge">Comunicação</li>
+                        <li class="badge">Gestão de Tempo</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="panel projects-panel item-projetos active">
+                <div class="panel-header">
+                    <span class="panel-icon">💻</span>
+                    <h2>Projetos Ativos</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="project-item">
+                        <h3>SysAuth_Python</h3>
+                        <p>Login seguro com JWT e criptografia.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>NetAudit_Tool</h3>
+                        <p>Script para análise básica de vulnerabilidades de rede.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="cyber-footer">
+            <p class="terminal-output">System::Status: <span class="status-ok">ONLINE</span> | Versão::1.0 | <a href="mailto:email@aluno.com">Contatar_via_E-mail</a></p>
+        </footer>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,244 @@
+/* --- CONFIGURAÇÕES GERAIS E CORES --- */
+:root {
+    --bg-color: #050509; /* Quase preto */
+    --panel-bg: #10101a;
+    --text-primary: #e0e0f0;
+    --text-secondary: #a0a0b0;
+    --neon-green: #00ff41; /* Estilo Matrix/Terminal */
+    --neon-pink: #ff2a6d; /* Estilo Cyberpunk */
+    --neon-cyan: #05d9e8;
+    --border-manga: #ffffff;
+    --font-tech: 'Press Start 2P', cursive;
+    --font-body: 'Space Grotesk', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.cyber-theme {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Efeito de Linhas de Scan de monitor antigo */
+.scanlines {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* --- CABEÇALHO --- */
+.cyber-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--neon-green);
+}
+
+.profile-pic-frame {
+    width: 150px; height: 150px;
+    border: 4px solid var(--border-manga);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 15px var(--neon-green);
+}
+
+.profile-pic {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(120%);
+    transition: 0.5s;
+}
+
+.profile-pic-frame:hover .profile-pic {
+    filter: grayscale(0%) contrast(100%);
+    transform: scale(1.1);
+}
+
+/* EFEITO GLITCH NO TÍTULO */
+.glitch-title {
+    font-family: var(--font-tech);
+    font-size: 1.8rem;
+    color: var(--neon-green);
+    position: relative;
+}
+
+.glitch-title::before, .glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+}
+
+.glitch-title::before {
+    left: 2px; text-shadow: -2px 0 var(--neon-pink);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+    left: -2px; text-shadow: -2px 0 var(--neon-cyan);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
+}
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); }
+    100% { clip-path: inset(5% 0 80% 0); }
+}
+
+.cyber-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    min-height: 1.6rem;
+}
+
+/* --- NAVEGAÇÃO / FILTROS --- */
+.cyber-nav { margin-bottom: 2rem; }
+.cyber-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 2px solid var(--border-manga);
+    color: var(--text-primary);
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-btn:hover, .nav-btn.active {
+    background-color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    color: var(--bg-color);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* --- GRID DE PAINÉIS (Estilo Mangá) --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border: 3px solid var(--border-manga);
+    padding: 20px;
+    position: relative;
+    transition: 0.3s;
+    display: none; /* Escondido por padrão para o filtro JS */
+}
+
+.panel.active { display: block; } /* Mostrar quando ativo */
+
+.panel:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 0px var(--neon-pink);
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--text-secondary);
+    padding-bottom: 10px;
+}
+
+.panel-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.panel-icon { font-size: 1.4rem; }
+
+/* Barras de Skills */
+.skill-list { list-style: none; }
+.skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.skill-name { font-weight: bold; color: var(--text-secondary); }
+
+.skill-bar {
+    width: 60%; height: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+    width: 0%; /* Começa em 0 para animação JS futura */
+    transition: width 1s ease-in-out;
+}
+
+/* Badges (Metodologias) */
+.badge-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.badge {
+    background: transparent;
+    border: 1px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 5px 10px;
+    font-size: 0.9rem;
+}
+
+/* Projetos */
+.project-item {
+    background-color: rgba(255,255,255,0.05);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.project-item h3 { font-size: 1rem; color: var(--neon-cyan); }
+
+/* --- RODAPÉ TERMINAL --- */
+.cyber-footer {
+    margin-top: 3rem;
+    padding: 1rem;
+    border-top: 2px solid var(--neon-green);
+    font-family: var(--font-tech);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.status-ok { color: var(--neon-green); animation: blink 1s infinite; }
+.cyber-footer a { color: var(--neon-cyan); text-decoration: none; }
+
+@keyframes blink { 50% { opacity: 0; } }

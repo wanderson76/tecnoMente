@@ -20,7 +20,7 @@ def listar_turmas(request):
 def query_dashboard_analytics(request, turma_id):
     """Puxa os dados consolidados direto da VIEW do banco para o React"""
     with connection.cursor() as cursor:
-        # 1. Pódio Top Alunos (Mesma lógica testada no console)
+        # 1. Pódio Top Alunos
         cursor.execute("""
             SELECT aluno_id as id, aluno_nome as nome, ROUND(AVG(media_final), 2) as media, SUM(faltas) as faltas
             FROM view_dashboard_consolidado
@@ -59,7 +59,8 @@ def query_dashboard_analytics(request, turma_id):
             FROM view_dashboard_consolidado 
             WHERE turma_id = %s;
         """, [turma_id])
-        media_geral = cursor.fetchone()[0] or 0.0
+        res_media = cursor.fetchone()
+        media_geral = res_media[0] if res_media and res_media[0] is not None else 0.0
 
         # 5. Total de alunos únicos na turma
         cursor.execute("""
@@ -67,7 +68,8 @@ def query_dashboard_analytics(request, turma_id):
             FROM view_dashboard_consolidado 
             WHERE turma_id = %s;
         """, [turma_id])
-        total_alunos = cursor.fetchone()[0] or 0
+        res_total = cursor.fetchone()
+        total_alunos = res_total[0] if res_total and res_total[0] is not None else 0
 
     return JsonResponse({
         'media_geral_turma': media_geral,

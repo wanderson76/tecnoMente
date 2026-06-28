@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 from pathlib import Path
 
+
+import os
+import dj_database_url
+from pathlib import Path
+
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-jsrtv)@=ayoo3s1^95tm-buv0phk90p-2&-j!)oty_*p=4jxr8'
@@ -70,13 +77,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Se houver a variável DATABASE_URL (no Railway), usa Postgres. Caso contrário, usa SQLite local.
+if os.environ.get("DATABASE_URL"):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
 
 
 # Password validation

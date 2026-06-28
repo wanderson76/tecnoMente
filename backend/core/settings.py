@@ -17,7 +17,8 @@ SECRET_KEY = 'django-insecure-jsrtv)@=ayoo3s1^95tm-buv0phk90p-2&-j!)oty_*p=4jxr8
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']  # Facilitar o desenvolvimento local
+# No seu core/settings.py local
+ALLOWED_HOSTS = ['tecnomente-production.up.railway.app', 'localhost', '127.0.0.1']
 
 
 # Application definition

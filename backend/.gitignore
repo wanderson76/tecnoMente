@@ -1,0 +1,22 @@
+# Ambientes Virtuais
+venv/
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Banco de Dados Local (Desenvolvimento)
+db.sqlite3
+
+# Arquivos de Dados e Exportações da SED (Segurança de Dados)
+*.csv
+*.xlsx
+*.xls
+
+# Ideias/Configurações locais de IDE
+.json
+.vscode/
+.idea/

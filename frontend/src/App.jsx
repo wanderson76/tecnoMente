@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RadarAluno } from './components/RadarAluno';
-
-// Centralização da URL de Produção do Railway
-const API_URL = 'https://tecnomente-production.up.railway.app';
 
 function App() {
   const [turmas, setTurmas] = useState([]);
@@ -12,9 +10,8 @@ function App() {
   const [alunoIdParaRadar, setAlunoIdParaRadar] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Busca inicial das turmas cadastradas
   useEffect(() => {
-    axios.get(`${API_URL}/api/turmas/`)
+    axios.get('http://127.0.0.1:8000/api/turmas/')
       .then(res => {
         setTurmas(res.data);
         if (res.data.length > 0) setTurmaSelecionada(res.data[0].id);
@@ -22,52 +19,24 @@ function App() {
       .catch(err => console.error("Erro ao buscar turmas:", err));
   }, []);
 
-  // Função encapsulada para buscar as métricas analíticas da turma
-  const carregarAnalytics = useCallback((idTurma) => {
-    if (!idTurma) return;
-    setLoading(true);
-    axios.get(`${API_URL}/api/analytics/turma/${idTurma}/`)
-      .then(res => {
-        setAnalytics(res.data);
-        // Define o primeiro aluno da lista de destaque se nenhum estiver selecionado
-        if (res.data.top_alunos?.length > 0 && !alunoIdParaRadar) {
-          setAlunoIdParaRadar(res.data.top_alunos[0].id);
-        }
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Erro ao buscar analytics:", err);
-        setLoading(false);
-      });
-  }, [alunoIdParaRadar]);
-
-  // Monitora a troca de turmas no seletor
   useEffect(() => {
-    carregarAnalytics(turmaSelecionada);
-  }, [turmaSelecionada, carregarAnalytics]);
+    if (turmaSelecionada) {
+      setLoading(true);
+      axios.get(`http://127.0.0.1:8000/api/analytics/turma/${turmaSelecionada}/`)
+        .then(res => {
+          setAnalytics(res.data);
+          if (res.data.top_alunos?.length > 0) {
+            setAlunoIdParaRadar(res.data.top_alunos[0].id);
+          }
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error("Erro ao buscar analytics:", err);
+          setLoading(false);
+        });
+    }
+  }, [turmaSelecionada]);
 
-  // Handler para processamento do formulário de notas
-  const handleRegistrarNota = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    
-    const formData = {
-      aluno_id: form.aluno.value,
-      disciplina_id: form.disciplina.value,
-      nota: parseFloat(form.nota.value),
-      faltas: parseInt(form.faltas.value)
-    };
-    
-    axios.post(`${API_URL}/api/boletim/registrar/`, formData)
-      .then(() => {
-        alert('Nota integrada ao banco com sucesso! Atualizando dashboards...');
-        form.reset(); // Limpa os campos do formulário
-        carregarAnalytics(turmaSelecionada); // Atualiza os dados de forma limpa e reativa
-      })
-      .catch(err => alert('Erro ao salvar registro: ' + err.message));
-  };
-
-  // Estilizações customizadas
   const glassStyle = {
     background: 'rgba(255, 255, 255, 0.03)',
     backdropFilter: 'blur(16px) saturate(180%)',
@@ -88,22 +57,17 @@ function App() {
     fontFamily: 'sans-serif'
   };
 
+  // Mapeamento de cores neon para cada disciplina técnica
   const CoresDisciplinas = {
-    'BACK-END': '#a855f7',
-    'FRONT-END': '#22d3ee',
-    'BANCO DE DADOS': '#34d399'
+    'BACK-END': '#a855f7',      // Purple
+    'FRONT-END': '#22d3ee',     // Cyan
+    'BANCO DE DADOS': '#34d399' // Emerald
   };
-
-  // Remove duplicatas de id ao unificar as listas para o select de alunos
-  const todosAlunos = analytics 
-    ? [...(analytics.top_alunos || []), ...(analytics.alunos_recuperacao || [])]
-        .filter((value, index, self) => self.findIndex(t => t.id === value.id) === index)
-    : [];
 
   return (
     <div style={containerStyle}>
       
-      {/* HEADER */}
+      {/* HEADER EM ESTILO VIDRO */}
       <header style={{ ...glassStyle, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 style={{ fontSize: '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0 }}>
@@ -130,7 +94,7 @@ function App() {
 
       {!loading && analytics && (
         <div>
-          {/* CARDS KPIs */}
+          {/* CARDS KPIs DO TOPO */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
             <div style={{ ...glassStyle, borderLeft: '4px solid #3b82f6', marginBottom: 0 }}>
               <span style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: '600' }}>Total de Alunos Monitorados</span>
@@ -144,7 +108,7 @@ function App() {
             </div>
           </div>
 
-          {/* DESEMPENHO POR COMPONENTE */}
+          {/* NOVA SEÇÃO: MÉDIAS POR DISCIPLINA SEPARADA */}
           <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '1rem', paddingLeft: '0.25rem' }}>
             📊 Desempenho por Componente Curricular
           </h3>
@@ -161,6 +125,7 @@ function App() {
                       {disc.media >= 5 ? '✓ Estável' : '🚨 Atenção'}
                     </span>
                   </div>
+                  {/* Barra de progresso micro inline */}
                   <div style={{ width: '100%', height: '4px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '2px', marginTop: '0.75rem', overflow: 'hidden' }}>
                     <div style={{ width: `${porcenBarra}%`, height: '100%', backgroundColor: corNeon, borderRadius: '2px' }}></div>
                   </div>
@@ -169,11 +134,13 @@ function App() {
             })}
           </div>
 
-          {/* GRID DE CONTEÚDO PRINCIPAL */}
+          {/* GRID DE CONTEÚDO */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
             
+            {/* TABELAS (ESQUERDA/CENTRO) */}
             <div style={{ gridColumn: 'span 2' }}>
-              {/* TOP ALUNOS */}
+              
+              {/* LISTA 1: TOP 10 */}
               <div style={glassStyle}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#22d3ee', marginBottom: '1rem' }}>🏆 Top Alunos da Turma</h3>
                 <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
@@ -205,7 +172,7 @@ function App() {
                 </table>
               </div>
 
-              {/* RECUPERAÇÃO */}
+              {/* LISTA 2: RECUPERAÇÃO */}
               <div style={glassStyle}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#f43f5e', marginBottom: '1rem' }}>⚠️ Alunos em Recuperação Crítica</h3>
                 {analytics.alunos_recuperacao?.length === 0 ? (
@@ -225,7 +192,7 @@ function App() {
                           <td style={{ padding: '0.75rem 0', textAlign: 'center', width: '5rem' }}>
                             <button 
                               onClick={() => setAlunoIdParaRadar(aluno.id)}
-                              style={{ backgroundColor: alunoIdParaRadar === aluno.id ? '#22d3ee' : 'rgba(255,255,255,0.05)', color: alunoIdParaRadar === aluno.id ? '#030712' : '#fff', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '0.5rem', fontSize: '0.75rem', cursor: 'pointer' }}
+                              style={{ backgroundColor: 'rgba(255,255,255,0.05)', color: '#fff', border: 'none', padding: '0.3rem 0.8rem', borderRadius: '0.5rem', fontSize: '0.75rem', cursor: 'pointer' }}
                             >
                               Analisar
                             </button>
@@ -236,17 +203,17 @@ function App() {
                   </table>
                 )}
               </div>
+
             </div>
 
-            {/* RADAR GRÁFICO */}
+            {/* RADAR CHART (DIREITA) */}
             <div>
-              {/* Passagem da API_URL de produção para o gráfico se readequar */}
-              <RadarAluno alunoId={alunoIdParaRadar} apiUrl={API_URL} />
+              <RadarAluno alunoId={alunoIdParaRadar} />
             </div>
 
           </div>
 
-          {/* FORMULÁRIO DE LANÇAMENTO */}
+          {/* FORMULÁRIO DE LANÇAMENTO RÁPIDO */}
           <div style={{ ...glassStyle, marginTop: '2rem', borderLeft: '4px solid #22d3ee' }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: '#22d3ee', marginBottom: '0.5rem' }}>
               ⚡ Lançamento Rápido de Notas
@@ -255,12 +222,29 @@ function App() {
               Insira uma nova avaliação. O banco executará o recálculo imediato do Dashboard e do Pentágono Técnico.
             </p>
             
-            <form onSubmit={handleRegistrarNota} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'end' }}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              const formData = {
+                aluno_id: e.target.aluno.value,
+                disciplina_id: e.target.disciplina.value,
+                nota: parseFloat(e.target.nota.value),
+                faltas: parseInt(e.target.faltas.value)
+              };
+              
+              axios.post('http://127.0.0.1:8000/api/boletim/registrar/', formData)
+                .then(() => {
+                  alert('Nota integrada ao banco com sucesso! Atualizando métricas...');
+                  const current = turmaSelecionada;
+                  setTurmaSelecionada('');
+                  setTimeout(() => setTurmaSelecionada(current), 50);
+                })
+                .catch(err => alert('Erro ao salvar registro: ' + err.message));
+            }} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'end' }}>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600' }}>SELECIONAR ALUNO</label>
                 <select name="aluno" required style={{ backgroundColor: '#1e293b', border: '1px solid #475569', color: '#fff', padding: '0.5rem', borderRadius: '0.5rem', outline: 'none' }}>
-                  {todosAlunos.map(a => (
+                  {analytics.top_alunos?.concat(analytics.alunos_recuperacao || []).map(a => (
                     <option key={a.id} value={a.id}>{a.nome}</option>
                   ))}
                 </select>

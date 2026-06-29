@@ -8,4 +8,7 @@ urlpatterns = [
     path('analytics/turma/<int:turma_id>/', dashboard_analytics_completo, name='dashboard_analytics'),
     path('analytics/aluno/<int:aluno_id>/radar/', radar_aluno_disciplinas, name='radar_aluno'),
     path('boletim/registrar/', views.registrar_nota, name='registrar_nota'),
+   
 ]
+
+

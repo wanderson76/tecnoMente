@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-jsrtv)@=ayoo3s1^95tm-buv0phk90p-2&-j!)oty_*p=4jxr8
 DEBUG = True
 
 # No seu core/settings.py local
-ALLOWED_HOSTS = ['tecnomente-production.up.railway.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,7 +80,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Se houver a variável DATABASE_URL (no Railway), usa Postgres. Caso contrário, usa SQLite local.
 if os.environ.get("DATABASE_URL"):
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        # Removido o ssl_require estrito para funcionar na rede interna do Railway
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=False)
     }
 else:
     DATABASES = {

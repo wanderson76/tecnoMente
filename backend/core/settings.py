@@ -134,4 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Diz ao Django que essa origem é segura para requisições POST/PUT
 CSRF_TRUSTED_ORIGINS = [
     'https://tecnomente-production.up.railway.app',
+    'https://tecnomente-frontend-production.up.railway.app/',
 ]

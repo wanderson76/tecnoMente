@@ -1,43 +1,30 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { RadarAluno } from './components/RadarAluno';
 
-function App() {
-  const [turmas, setTurmas] = useState([]);
-  const [turmaSelecionada, setTurmaSelecionada] = useState('');
-  const [analytics, setAnalytics] = useState(null);
-  const [alunoIdParaRadar, setAlunoIdParaRadar] = useState(null);
-  const [loading, setLoading] = useState(false);
+// Definição dinâmica da URL da API (Local vs Produção Railway)
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+  ? 'http://127.0.0.1:8000'
+  : 'https://tecnomente-production.up.railway.app';
 
-  useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/turmas/')
-      .then(res => {
-        setTurmas(res.data);
-        if (res.data.length > 0) setTurmaSelecionada(res.data[0].id);
-      })
-      .catch(err => console.error("Erro ao buscar turmas:", err));
-  }, []);
+// Cores neon estruturadas para os componentes técnicos
+const CORES_DISCIPLINAS = {
+  'BACK-END': '#a855f7',      // Purple
+  'FRONT-END': '#22d3ee',     // Cyan
+  'BANCO DE DADOS': '#34d399' // Emerald
+};
 
-  useEffect(() => {
-    if (turmaSelecionada) {
-      setLoading(true);
-      axios.get(`http://127.0.0.1:8000/api/analytics/turma/${turmaSelecionada}/`)
-        .then(res => {
-          setAnalytics(res.data);
-          if (res.data.top_alunos?.length > 0) {
-            setAlunoIdParaRadar(res.data.top_alunos[0].id);
-          }
-          setLoading(false);
-        })
-        .catch(err => {
-          console.error("Erro ao buscar analytics:", err);
-          setLoading(false);
-        });
-    }
-  }, [turmaSelecionada]);
-
-  const glassStyle = {
+// Centralização dos objetos de estilo (limpa o escopo do componente)
+const ESTILOS = {
+  container: {
+    minHeight: '100vh',
+    backgroundColor: '#030712',
+    backgroundImage: 'radial-gradient(circle at top, #0f1123 0%, #030712 70%, #050508 100%)',
+    color: '#f1f5f9',
+    padding: '1.5rem',
+    fontFamily: 'sans-serif'
+  },
+  glass: {
     background: 'rgba(255, 255, 255, 0.03)',
     backdropFilter: 'blur(16px) saturate(180%)',
     WebkitBackdropFilter: 'blur(16px) saturate(180%)',
@@ -46,29 +33,72 @@ function App() {
     boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
     padding: '1.5rem',
     marginBottom: '1.5rem'
-  };
+  }
+};
 
-  const containerStyle = {
-    minHeight: '100vh',
-    backgroundColor: '#030712',
-    backgroundImage: 'radial-gradient(circle at top, #0f1123 0%, #030712 70%, #050508 100%)',
-    color: '#f1f5f9',
-    padding: '1.5rem',
-    fontFamily: 'sans-serif'
-  };
+function App() {
+  const [turmas, setTurmas] = useState([]);
+  const [turmaSelecionada, setTurmaSelecionada] = useState('');
+  const [analytics, setAnalytics] = useState(null);
+  const [alunoIdParaRadar, setAlunoIdParaRadar] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  // Mapeamento de cores neon para cada disciplina técnica
-  const CoresDisciplinas = {
-    'BACK-END': '#a855f7',      // Purple
-    'FRONT-END': '#22d3ee',     // Cyan
-    'BANCO DE DADOS': '#34d399' // Emerald
+  // Busca inicial das turmas cadastradas
+  useEffect(() => {
+    axios.get(`${API_BASE_URL}/api/turmas/`)
+      .then(res => {
+        setTurmas(res.data);
+        if (res.data.length > 0) setTurmaSelecionada(res.data[0].id);
+      })
+      .catch(err => console.error("Erro ao buscar turmas:", err));
+  }, []);
+
+  // Função isolada e memoizada para carregar/atualizar dados da turma
+  const carregarAnalytics = useCallback((idTurma) => {
+    if (!idTurma) return;
+    setLoading(true);
+    axios.get(`${API_BASE_URL}/api/analytics/turma/${idTurma}/`)
+      .then(res => {
+        setAnalytics(res.data);
+        if (res.data.top_alunos?.length > 0) {
+          setAlunoIdParaRadar(res.data.top_alunos[0].id);
+        }
+      })
+      .catch(err => console.error("Erro ao buscar analytics:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Gatilho executado sempre que a turma selecionada for alterada
+  useEffect(() => {
+    carregarAnalytics(turmaSelecionada);
+  }, [turmaSelecionada, carregarAnalytics]);
+
+  // Handler para envio do formulário de novas avaliações
+  const handleRegistrarNota = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    
+    const formData = {
+      aluno_id: form.aluno.value,
+      disciplina_id: form.disciplina.value,
+      nota: parseFloat(form.nota.value),
+      faltas: parseInt(form.faltas.value)
+    };
+    
+    axios.post(`${API_BASE_URL}/api/boletim/registrar/`, formData)
+      .then(() => {
+        alert('Nota integrada ao banco com sucesso! Atualizando métricas...');
+        form.reset();
+        carregarAnalytics(turmaSelecionada); // Atualiza os dados imediatamente sem re-renderizar a página inteira
+      })
+      .catch(err => alert('Erro ao salvar registro: ' + err.message));
   };
 
   return (
-    <div style={containerStyle}>
+    <div style={ESTILOS.container}>
       
       {/* HEADER EM ESTILO VIDRO */}
-      <header style={{ ...glassStyle, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+      <header style={{ ...ESTILOS.glass, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 style={{ fontSize: '1.8rem', fontWeight: '800', background: 'linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #a855f7 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', margin: 0 }}>
             EduAnalytica • Painel do Professor
@@ -96,11 +126,11 @@ function App() {
         <div>
           {/* CARDS KPIs DO TOPO */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '1.5rem' }}>
-            <div style={{ ...glassStyle, borderLeft: '4px solid #3b82f6', marginBottom: 0 }}>
+            <div style={{ ...ESTILOS.glass, borderLeft: '4px solid #3b82f6', marginBottom: 0 }}>
               <span style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: '600' }}>Total de Alunos Monitorados</span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: '#fff', marginTop: '0.5rem' }}>{analytics.kpis?.qtd_alunos || 0}</h2>
             </div>
-            <div style={{ ...glassStyle, borderLeft: '4px solid #34d399', marginBottom: 0 }}>
+            <div style={{ ...ESTILOS.glass, borderLeft: '4px solid #34d399', marginBottom: 0 }}>
               <span style={{ fontSize: '0.75rem', color: '#94a3b8', textTransform: 'uppercase', fontWeight: '600' }}>Média Geral da Turma</span>
               <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: '#34d399', marginTop: '0.5rem' }}>
                 {analytics.kpis?.media_geral_turma || '0.0'}
@@ -108,16 +138,16 @@ function App() {
             </div>
           </div>
 
-          {/* NOVA SEÇÃO: MÉDIAS POR DISCIPLINA SEPARADA */}
+          {/* DESEMPENHO POR COMPONENTE CURRICULAR */}
           <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#fff', marginBottom: '1rem', paddingLeft: '0.25rem' }}>
             📊 Desempenho por Componente Curricular
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginBottom: '2rem' }}>
             {analytics.medias_por_disciplina?.map((disc, idx) => {
-              const corNeon = CoresDisciplinas[disc.nome.toUpperCase()] || '#22d3ee';
+              const corNeon = CORES_DISCIPLINAS[disc.nome.toUpperCase()] || '#22d3ee';
               const porcenBarra = Math.min((disc.media / 10) * 100, 100);
               return (
-                <div key={idx} style={{ ...glassStyle, borderTop: `3px solid ${corNeon}`, marginBottom: 0, padding: '1.25rem' }}>
+                <div key={idx} style={{ ...ESTILOS.glass, borderTop: `3px solid ${corNeon}`, marginBottom: 0, padding: '1.25rem' }}>
                   <span style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase' }}>{disc.nome}</span>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '0.5rem' }}>
                     <h4 style={{ fontSize: '1.8rem', fontWeight: '800', margin: 0, color: '#fff' }}>{disc.media}</h4>
@@ -125,7 +155,6 @@ function App() {
                       {disc.media >= 5 ? '✓ Estável' : '🚨 Atenção'}
                     </span>
                   </div>
-                  {/* Barra de progresso micro inline */}
                   <div style={{ width: '100%', height: '4px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '2px', marginTop: '0.75rem', overflow: 'hidden' }}>
                     <div style={{ width: `${porcenBarra}%`, height: '100%', backgroundColor: corNeon, borderRadius: '2px' }}></div>
                   </div>
@@ -137,11 +166,11 @@ function App() {
           {/* GRID DE CONTEÚDO */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
             
-            {/* TABELAS (ESQUERDA/CENTRO) */}
+            {/* TABELAS */}
             <div style={{ gridColumn: 'span 2' }}>
               
-              {/* LISTA 1: TOP 10 */}
-              <div style={glassStyle}>
+              {/* TOP 10 */}
+              <div style={ESTILOS.glass}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#22d3ee', marginBottom: '1rem' }}>🏆 Top Alunos da Turma</h3>
                 <table style={{ width: '100%', textAlign: 'left', borderCollapse: 'collapse' }}>
                   <thead>
@@ -172,8 +201,8 @@ function App() {
                 </table>
               </div>
 
-              {/* LISTA 2: RECUPERAÇÃO */}
-              <div style={glassStyle}>
+              {/* RECUPERAÇÃO */}
+              <div style={ESTILOS.glass}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#f43f5e', marginBottom: '1rem' }}>⚠️ Alunos em Recuperação Crítica</h3>
                 {analytics.alunos_recuperacao?.length === 0 ? (
                   <p style={{ color: '#94a3b8', fontSize: '0.9rem' }}>Nenhum aluno com nota deficitária nesta turma! 🎉</p>
@@ -206,7 +235,7 @@ function App() {
 
             </div>
 
-            {/* RADAR CHART (DIREITA) */}
+            {/* GRÁFICO RADAR CHART */}
             <div>
               <RadarAluno alunoId={alunoIdParaRadar} />
             </div>
@@ -214,7 +243,7 @@ function App() {
           </div>
 
           {/* FORMULÁRIO DE LANÇAMENTO RÁPIDO */}
-          <div style={{ ...glassStyle, marginTop: '2rem', borderLeft: '4px solid #22d3ee' }}>
+          <div style={{ ...ESTILOS.glass, marginTop: '2rem', borderLeft: '4px solid #22d3ee' }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: '700', color: '#22d3ee', marginBottom: '0.5rem' }}>
               ⚡ Lançamento Rápido de Notas
             </h3>
@@ -222,24 +251,7 @@ function App() {
               Insira uma nova avaliação. O banco executará o recálculo imediato do Dashboard e do Pentágono Técnico.
             </p>
             
-            <form onSubmit={(e) => {
-              e.preventDefault();
-              const formData = {
-                aluno_id: e.target.aluno.value,
-                disciplina_id: e.target.disciplina.value,
-                nota: parseFloat(e.target.nota.value),
-                faltas: parseInt(e.target.faltas.value)
-              };
-              
-              axios.post('http://127.0.0.1:8000/api/boletim/registrar/', formData)
-                .then(() => {
-                  alert('Nota integrada ao banco com sucesso! Atualizando métricas...');
-                  const current = turmaSelecionada;
-                  setTurmaSelecionada('');
-                  setTimeout(() => setTurmaSelecionada(current), 50);
-                })
-                .catch(err => alert('Erro ao salvar registro: ' + err.message));
-            }} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'end' }}>
+            <form onSubmit={handleRegistrarNota} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'end' }}>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <label style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: '600' }}>SELECIONAR ALUNO</label>

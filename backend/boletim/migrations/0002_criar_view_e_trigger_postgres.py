@@ -9,18 +9,19 @@ def criar_views_e_triggers(apps, schema_editor):
     # Se cair aqui, significa que está rodando no Postgres (ex: Production no Railway)
     cursor = schema_editor.connection.cursor()
     
-    # 1. Criação da View Analítica no Postgres
+    # 1. Criação da View Analítica no Postgres (Mapeamento Corrigido)
     cursor.execute("""
         CREATE OR REPLACE VIEW view_dashboard_analitica AS
         SELECT 
             t.id AS turma_id,
             a.id AS aluno_id,
             a.nome AS nome_aluno,
-            b.nota,
-            b.faltas
+            b.media_final,  -- <-- CORRIGIDO: de b.nota para b.media_final
+            b.faltas,
+            b.bimestre
         FROM boletim_turma t
         JOIN boletim_aluno a ON a.turma_id = t.id
-        LEFT JOIN boletim_boletim b ON b.aluno_id = a.id;
+        LEFT JOIN boletim_registroboletim b ON b.aluno_id = a.id; -- <-- CORRIGIDO: nome real da tabela
     """)
     
     # 2. Exemplo de Trigger ou Função customizada que você tenha no Postgres
@@ -38,7 +39,7 @@ def remover_views_e_triggers(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boletim', '0001_initial'),  # Certifique-se de que este nome bate com a sua migração 0001
+        ('boletim', '0001_initial'),
     ]
 
     operations = [

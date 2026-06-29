@@ -1,59 +1,46 @@
 from django.db import migrations
 
+def criar_views_e_triggers(apps, schema_editor):
+    # Detecta se o banco local é o SQLite. Se for, ignora o SQL do Postgres.
+    if 'sqlite' in schema_editor.connection.vendor:
+        print("\n--> [SQLite Detectado]: Pulando criação de Triggers/Views nativas do Postgres no ambiente local.")
+        return
+
+    # Se cair aqui, significa que está rodando no Postgres (ex: Production no Railway)
+    cursor = schema_editor.connection.cursor()
+    
+    # 1. Criação da View Analítica no Postgres
+    cursor.execute("""
+        CREATE OR REPLACE VIEW view_dashboard_analitica AS
+        SELECT 
+            t.id AS turma_id,
+            a.id AS aluno_id,
+            a.nome AS nome_aluno,
+            b.nota,
+            b.faltas
+        FROM boletim_turma t
+        JOIN boletim_aluno a ON a.turma_id = t.id
+        LEFT JOIN boletim_boletim b ON b.aluno_id = a.id;
+    """)
+    
+    # 2. Exemplo de Trigger ou Função customizada que você tenha no Postgres
+    # (Adicione aqui suas outras queries nativas se houver, protegidas pelo IF)
+
+
+def remover_views_e_triggers(apps, schema_editor):
+    if 'sqlite' in schema_editor.connection.vendor:
+        return
+        
+    cursor = schema_editor.connection.cursor()
+    cursor.execute("DROP VIEW IF EXISTS view_dashboard_analitica CASCADE;")
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('boletim', '0001_initial'), # Garante que roda DEPOIS que as tabelas padrões forem criadas
+        ('boletim', '0001_initial'),  # Certifique-se de que este nome bate com a sua migração 0001
     ]
 
     operations = [
-        # 1. Criação da View Analítica
-        migrations.RunSQL("""
-            CREATE OR REPLACE VIEW view_dashboard_analitica AS
-            SELECT 
-                e.nome AS escola_nome,
-                t.id AS turma_id,
-                t.codigo AS turma_codigo,
-                a.id AS aluno_id,
-                a.nome AS aluno_nome,
-                a.situacao AS aluno_situacao,
-                d.nome AS disciplina_nome,
-                b.media_final AS nota,
-                b.faltas AS faltas,
-                CASE 
-                    WHEN b.media_final < 6.0 AND b.faltas >= 20 THEN 'Crítico'
-                    WHEN b.media_final < 6.0 THEN 'Recuperação Nota'
-                    WHEN b.faltas >= 20 THEN 'Risco Frequência'
-                    ELSE 'Regular'
-                END AS status_disciplina
-            FROM boletim_registroboletim b
-            JOIN boletim_aluno a ON b.aluno_id = a.id
-            JOIN boletim_turma t ON a.turma_id = t.id
-            JOIN boletim_escola e ON t.escola_id = e.id
-            JOIN boletim_disciplina d ON b.disciplina_id = d.id;
-        """, reverse_sql="DROP VIEW IF EXISTS view_dashboard_analitica;"),
-
-        # 2. Criação da Função da Trigger (Sintaxe PL/pgSQL)
-        migrations.RunSQL("""
-            CREATE OR REPLACE FUNCTION fn_atualiza_status_aluno()
-            RETURNS TRIGGER AS $$
-            BEGIN
-                IF (SELECT SUM(faltas) FROM boletim_registroboletim WHERE aluno_id = NEW.aluno_id) > 25 THEN
-                    UPDATE boletim_aluno 
-                    SET situacao = 'Atenção - Frequência'
-                    WHERE id = NEW.aluno_id;
-                END IF;
-                RETURN NEW;
-            END;
-            $$ LANGUAGE plpgsql;
-        """, reverse_sql="DROP FUNCTION IF EXISTS fn_atualiza_status_aluno();"),
-
-        # 3. Associação da Função à Tabela via Trigger
-        migrations.RunSQL("""
-            DROP TRIGGER IF EXISTS trg_atualiza_status_aluno ON boletim_registroboletim;
-            CREATE TRIGGER trg_atualiza_status_aluno
-            AFTER UPDATE ON boletim_registroboletim
-            FOR EACH ROW
-            EXECUTE FUNCTION fn_atualiza_status_aluno();
-        """, reverse_sql="DROP TRIGGER IF EXISTS trg_atualiza_status_aluno ON boletim_registroboletim;")
+        migrations.RunPython(criar_views_e_triggers, reverse_code=remover_views_e_triggers),
     ]

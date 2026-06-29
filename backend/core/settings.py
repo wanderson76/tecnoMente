@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-jsrtv)@=ayoo3s1^95tm-buv0phk90p-2&-j!)oty_*p=4jxr8
 DEBUG = True
 
 # No seu core/settings.py local
-ALLOWED_HOSTS = ['*']
+# Permite que o Django responda por esse domínio
+ALLOWED_HOSTS = [
+    'tecnomente-production.up.railway.app',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -123,3 +128,10 @@ USE_TZ = True
 # Static files
 STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Diz ao Django que essa origem é segura para requisições POST/PUT
+CSRF_TRUSTED_ORIGINS = [
+    'https://tecnomente-production.up.railway.app',
+]

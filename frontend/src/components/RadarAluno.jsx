@@ -2,19 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Legend } from 'recharts';
 import axios from 'axios';
 
-export function RadarAluno({ alunoId }) {
+export function RadarAluno({ alunoId, apiBaseUrl }) { // <-- Recebendo apiBaseUrl aqui
   const [dadosRadar, setDadosRadar] = useState([]);
 
   useEffect(() => {
-    if (alunoId) {
-      axios.get(`http://127.0.0.1:8000/api/analytics/aluno/${alunoId}/radar/`)
+    if (alunoId && apiBaseUrl) {
+      // Usando a URL dinâmica vinda do App.jsx
+      axios.get(`${apiBaseUrl}/api/analytics/aluno/${alunoId}/radar/`)
         .then(response => {
           console.log("Dados recebidos do banco para o Radar:", response.data);
           setDadosRadar(response.data);
         })
         .catch(error => console.error("Erro ao buscar dados do radar:", error));
     }
-  }, [alunoId]);
+  }, [alunoId, apiBaseUrl]);
 
   if (dadosRadar.length === 0) {
     return (
@@ -31,7 +32,6 @@ export function RadarAluno({ alunoId }) {
       </h3>
       <p className="text-xs text-gray-400 text-center mb-6">Comparativo com a linha de corte (6.0)</p>
       
-      {/* Forçando tamanho estático para evitar colapso de CSS do contêiner */}
       <RadarChart cx={180} cy={140} outerRadius={90} width={360} height={300} data={dadosRadar}>
         <PolarGrid stroke="#4a5568" />
         <PolarAngleAxis dataKey="subject" tick={{ fill: '#cbd5e1', fontSize: 10, fontWeight: 'bold' }} />

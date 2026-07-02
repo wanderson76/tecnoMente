@@ -48,7 +48,9 @@ function App() {
     axios.get(`${API_BASE_URL}/api/turmas/`)
       .then(res => {
         setTurmas(res.data);
-        if (res.data.length > 0) setTurmaSelecionada(res.data[0].id);
+        if (res.data && res.data.length > 0) {
+          setTurmaSelecionada(res.data[0].id);
+        }
       })
       .catch(err => console.error("Erro ao buscar turmas:", err));
   }, []);
@@ -60,8 +62,10 @@ function App() {
     axios.get(`${API_BASE_URL}/api/analytics/turma/${idTurma}/`)
       .then(res => {
         setAnalytics(res.data);
-        if (res.data.top_alunos?.length > 0) {
+        if (res.data && res.data.top_alunos?.length > 0) {
           setAlunoIdParaRadar(res.data.top_alunos[0].id);
+        } else {
+          setAlunoIdParaRadar(null);
         }
       })
       .catch(err => console.error("Erro ao buscar analytics:", err))
@@ -70,7 +74,9 @@ function App() {
 
   // Gatilho executado sempre que a turma selecionada for alterada
   useEffect(() => {
-    carregarAnalytics(turmaSelecionada);
+    if (turmaSelecionada) {
+      carregarAnalytics(turmaSelecionada);
+    }
   }, [turmaSelecionada, carregarAnalytics]);
 
   // Handler para envio do formulário de novas avaliações
@@ -89,7 +95,7 @@ function App() {
       .then(() => {
         alert('Nota integrada ao banco com sucesso! Atualizando métricas...');
         form.reset();
-        carregarAnalytics(turmaSelecionada); // Atualiza os dados imediatamente sem re-renderizar a página inteira
+        carregarAnalytics(turmaSelecionada);
       })
       .catch(err => alert('Erro ao salvar registro: ' + err.message));
   };
@@ -113,14 +119,24 @@ function App() {
             onChange={(e) => setTurmaSelecionada(e.target.value)}
             style={{ backgroundColor: '#1e293b', border: '1px solid #475569', color: '#22d3ee', borderRadius: '0.5rem', padding: '0.4rem 1rem', outline: 'none', cursor: 'pointer' }}
           >
-            {turmas.map(t => (
-              <option key={t.id} value={t.id} style={{ backgroundColor: '#0f172a', color: '#fff' }}>{t.codigo} - {t.escola}</option>
-            ))}
+            {turmas.length === 0 ? (
+              <option value="">Nenhuma turma cadastrada</option>
+            ) : (
+              turmas.map(t => (
+                <option key={t.id} value={t.id} style={{ backgroundColor: '#0f172a', color: '#fff' }}>{t.codigo} - {t.escola}</option>
+              ))
+            )}
           </select>
         </div>
       </header>
 
       {loading && <div style={{ textAlign: 'center', padding: '3rem', color: '#22d3ee', fontWeight: '600' }}>Carregando métricas...</div>}
+
+      {!loading && !analytics && !turmaSelecionada && (
+        <div style={{ ...ESTILOS.glass, textAlign: 'center', color: '#94a3b8', padding: '3rem' }}>
+          Nenhuma turma selecionada ou dados não encontrados no banco. Comece cadastrando uma turma no painel admin.
+        </div>
+      )}
 
       {!loading && analytics && (
         <div>
@@ -237,7 +253,8 @@ function App() {
 
             {/* GRÁFICO RADAR CHART */}
             <div>
-              <RadarAluno alunoId={alunoIdParaRadar} />
+              {/* Passando a prop apiBaseUrl para resolver o problema de requisições fixas */}
+              <RadarAluno alunoId={alunoIdParaRadar} apiBaseUrl={API_BASE_URL} />
             </div>
 
           </div>

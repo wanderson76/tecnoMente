@@ -1,12 +1,9 @@
 from django.http import JsonResponse
 from django.db import connection
 from rest_framework.decorators import api_view
-from .models import Turma # Importante para a listagem funcionar
-
 from django.views.decorators.csrf import csrf_exempt
 import json
-
-
+from .models import Turma, RegistroBoletim # Corrigido aqui
 
 @api_view(['GET'])
 def listar_turmas(request):
@@ -25,8 +22,8 @@ def listar_turmas(request):
 @api_view(['GET'])
 def dashboard_analytics_completo(request, turma_id):
     """
-    Endpoint robusto que consolida toda a inteligência de negócios do banco
-    para alimentar os componentes e filtros do painel React.
+    Endpoint corrigido que busca os dados diretamente das tabelas do Django
+    usando as colunas corretas (media_final e faltas).
     """
     dados_dashboard = {}
 
@@ -35,13 +32,14 @@ def dashboard_analytics_completo(request, turma_id):
         # 👑 1. FILTRO: Os 10 Melhores Alunos (Média Global + Assiduidade)
         cursor.execute("""
             SELECT 
-                aluno_id AS id,
-                aluno_nome AS nome,
-                ROUND(AVG(nota), 2) AS media_global,
-                SUM(faltas) AS total_faltas
-            FROM view_dashboard_analitica
-            WHERE turma_id = %s AND aluno_situacao = 'Ativo'
-            GROUP BY aluno_id, aluno_nome
+                a.id AS id,
+                a.nome AS nome,
+                ROUND(AVG(rb.media_final), 2) AS media_global,
+                SUM(rb.faltas) AS total_faltas
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
+            WHERE a.turma_id = %s AND a.situacao = 'Ativo'
+            GROUP BY a.id, a.nome
             ORDER BY media_global DESC, total_faltas ASC
             LIMIT 10;
         """, [turma_id])
@@ -52,14 +50,15 @@ def dashboard_analytics_completo(request, turma_id):
         # ⚠️ 2. FILTRO: Alunos em Recuperação Crítica (Média Global < 6.0)
         cursor.execute("""
             SELECT 
-                aluno_id AS id,
-                aluno_nome AS nome,
-                ROUND(AVG(nota), 2) AS media_global,
-                SUM(faltas) AS total_faltas
-            FROM view_dashboard_analitica
-            WHERE turma_id = %s AND aluno_situacao = 'Ativo'
-            GROUP BY aluno_id, aluno_nome
-            HAVING AVG(nota) < 6.0
+                a.id AS id,
+                a.nome AS nome,
+                ROUND(AVG(rb.media_final), 2) AS media_global,
+                SUM(rb.faltas) AS total_faltas
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
+            WHERE a.turma_id = %s AND a.situacao = 'Ativo'
+            GROUP BY a.id, a.nome
+            HAVING AVG(rb.media_final) < 6.0
             ORDER BY media_global ASC;
         """, [turma_id])
         colunas_rec = [col[0] for col in cursor.description]
@@ -69,14 +68,15 @@ def dashboard_analytics_completo(request, turma_id):
         # 🚨 3. FILTRO: Alunos que Precisam de Atenção Urgente (Evasão / Faltas Elevadas)
         cursor.execute("""
             SELECT 
-                aluno_id AS id,
-                aluno_nome AS nome,
-                ROUND(AVG(nota), 2) AS media_global,
-                SUM(faltas) AS total_faltas
-            FROM view_dashboard_analitica
-            WHERE turma_id = %s AND aluno_situacao = 'Ativo'
-            GROUP BY aluno_id, aluno_nome
-            HAVING SUM(faltas) >= 20 OR AVG(nota) < 5.0
+                a.id AS id,
+                a.nome AS nome,
+                ROUND(AVG(rb.media_final), 2) AS media_global,
+                SUM(rb.faltas) AS total_faltas
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
+            WHERE a.turma_id = %s AND a.situacao = 'Ativo'
+            GROUP BY a.id, a.nome
+            HAVING SUM(rb.faltas) >= 20 OR AVG(rb.media_final) < 5.0
             ORDER BY total_faltas DESC;
         """, [turma_id])
         colunas_aten = [col[0] for col in cursor.description]
@@ -86,10 +86,11 @@ def dashboard_analytics_completo(request, turma_id):
         # 📈 4. KPIs Gerais da Turma (Cards do Topo do Painel)
         cursor.execute("""
             SELECT 
-                COUNT(DISTINCT aluno_id) AS qtd_alunos,
-                ROUND(AVG(nota), 2) AS media_geral_turma
-            FROM view_dashboard_analitica
-            WHERE turma_id = %s;
+                COUNT(DISTINCT rb.aluno_id) AS qtd_alunos,
+                ROUND(AVG(rb.media_final), 2) AS media_geral_turma
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
+            WHERE a.turma_id = %s;
         """, [turma_id])
         colunas_kpi = [col_desc[0] for col_desc in cursor.description]
         res_kpi = cursor.fetchone()
@@ -101,56 +102,59 @@ def dashboard_analytics_completo(request, turma_id):
 @api_view(['GET'])
 def radar_aluno_disciplinas(request, aluno_id):
     """
-    Endpoint exclusivo para alimentar o Gráfico de Radar (Pentágono) do Recharts.
-    Garante mapeamento explícito de colunas para evitar incompatibilidade.
+    Endpoint corrigido mapeando para as tabelas reais do banco.
     """
     with connection.cursor() as cursor:
         cursor.execute("""
             SELECT 
-                disciplina_nome,
-                nota
-            FROM view_dashboard_analitica
-            WHERE aluno_id = %s;
+                d.nome AS disciplina_nome,
+                rb.media_final AS nota
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_disciplina d ON rb.disciplina_id = d.id
+            WHERE rb.aluno_id = %s;
         """, [aluno_id])
         
         linhas = cursor.fetchall()
         
-        # Monta o formato exato que o Recharts consome: subject, A (nota), B (corte)
         dados_radar = []
         for linha in linhas:
             dados_radar.append({
-                'subject': linha[0],       # Nome da disciplina (ex: BACK-END)
-                'A': float(linha[1] or 0), # Nota do aluno transformada em float
-                'B': 6.0                   # Média escolar padrão de corte
+                'subject': linha[0],       
+                'A': float(linha[1] or 0), 
+                'B': 6.0                   
             })
         
     return JsonResponse(dados_radar, safe=False)
 
 
 
-
-@csrf_exempt  # Desabilita a checagem CSRF para permitir requisições diretas do React
+@csrf_exempt  
+@api_view(['POST'])
 def registrar_nota(request):
-    if request.method == 'POST':
-        try:
-            dados = json.loads(request.body)
-            aluno_id = dados.get('aluno_id')
-            disciplina_id = dados.get('disciplina_id')
-            nota = dados.get('nota')
-            faltas = dados.get('faltas', 0)
+    """
+    Registra ou atualiza as notas/faltas usando o modelo correto: RegistroBoletim.
+    """
+    try:
+        dados = json.loads(request.body)
+        aluno_id = dados.get('aluno_id')
+        disciplina_id = dados.get('disciplina_id')
+        nota = dados.get('nota')
+        faltas = dados.get('faltas', 0)
+        bimestre = dados.get('bimestre', 2) # Padrão do seu model é 2
 
-            with connection.cursor() as cursor:
-                # Como estamos usando SQLite localmente, a sintaxe correta para o "Insert or Update" é INSERT OR REPLACE
-                cursor.execute("""
-                    INSERT OR REPLACE INTO interstate_boletim (id, aluno_id, disciplina_id, nota, faltas)
-                    VALUES (
-                        (SELECT id FROM interstate_boletim WHERE aluno_id = %s AND disciplina_id = %s),
-                        %s, %s, %s, %s
-                    );
-                """, [aluno_id, disciplina_id, aluno_id, disciplina_id, nota, faltas])
+        # Corrigido para usar RegistroBoletim e o campo media_final
+        from .models import RegistroBoletim 
 
-            return JsonResponse({'status': 'sucesso', 'mensagem': 'Nota integrada com sucesso!'})
-        except Exception as e:
-            return JsonResponse({'status': 'erro', 'mensagem': str(e)}, status=400)
-            
-    return JsonResponse({'status': 'erro', 'mensagem': 'Método não permitido'}, status=405)
+        RegistroBoletim.objects.update_or_create(
+            aluno_id=aluno_id,
+            disciplina_id=disciplina_id,
+            bimestre=bimestre,
+            defaults={
+                'media_final': nota, # Seu model usa media_final, não nota
+                'faltas': faltas
+            }
+        )
+
+        return JsonResponse({'status': 'sucesso', 'mensagem': 'Nota integrada com sucesso!'})
+    except Exception as e:
+        return JsonResponse({'status': 'erro', 'mensagem': str(e)}, status=400)

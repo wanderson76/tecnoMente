@@ -1,0 +1,3311 @@
+[
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$J9LEuvtKjPI1jwCtNXYxyS$7qtgP2Hhi6rtPenpie/fgRp0yv6CWeJlR6C9558UmYI=",
+        "last_login": "2026-06-28T23:14:36.853Z",
+        "is_superuser": true,
+        "username": "Professor",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-28T23:11:34.955Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "yv9qk25zxygpi5gt8fu0w2j4nutxcalg",
+    "fields": {
+        "session_data": ".eJxVjDsOwyAQBe9CHSHAmE_K9D4DYpclOIlAMnYV5e6xJRdJOzPvvVmI21rC1mkJc2JXJtnll0HEJ9VDpEes98ax1XWZgR8JP23nU0v0up3t30GJvezrPGSbUXhFKFTGGC2AHBxpr2FMBnFnBNZriWSVcgZMQmHkgI4U2pF9vhiFOPE:1wdyhw:yxefds69mmMIcGpo7B8Wepd9UmgUzzV8uA14X9mJoUs",
+        "expire_date": "2026-07-12T23:14:36.869Z"
+    }
+},
+{
+    "model": "boletim.escola",
+    "pk": 1,
+    "fields": {
+        "nome": "MARIA JOSE DA PENHA FRUGOLI PROFESSORA"
+    }
+},
+{
+    "model": "boletim.escola",
+    "pk": 2,
+    "fields": {
+        "nome": "WALKIR VERGANI"
+    }
+},
+{
+    "model": "boletim.turma",
+    "pk": 1,
+    "fields": {
+        "escola": 1,
+        "codigo": "3ª SÉRIE C"
+    }
+},
+{
+    "model": "boletim.turma",
+    "pk": 2,
+    "fields": {
+        "escola": 2,
+        "codigo": "2º ANO C"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 1,
+    "fields": {
+        "turma": 1,
+        "nome": "ALEXIAH SILVA VALENTIM",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 2,
+    "fields": {
+        "turma": 1,
+        "nome": "ANA BEATRIZ BARRETO DE PAULO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 3,
+    "fields": {
+        "turma": 1,
+        "nome": "ANNE CAROLINE GOMES DE SOUZA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 4,
+    "fields": {
+        "turma": 1,
+        "nome": "CAIO BARSOTTI MARTINS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 5,
+    "fields": {
+        "turma": 1,
+        "nome": "DAVIS OURA DANTAS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 6,
+    "fields": {
+        "turma": 1,
+        "nome": "GABRIEL SILVA FIDELES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 7,
+    "fields": {
+        "turma": 1,
+        "nome": "GABRIEL SORIANO APARECIDO DE OLIVEIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 8,
+    "fields": {
+        "turma": 1,
+        "nome": "GUILHERME DE FREITAS VIEIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 9,
+    "fields": {
+        "turma": 1,
+        "nome": "ISAQUE MIGUEL LOPES DE SOUSA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 10,
+    "fields": {
+        "turma": 1,
+        "nome": "JHONATA RAFAEL PRADO NASCIMENTO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 11,
+    "fields": {
+        "turma": 1,
+        "nome": "JULLIO CESAR GONÇALVES SOARES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 12,
+    "fields": {
+        "turma": 1,
+        "nome": "LUAN GABRIEL MOREIRA GARCIA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 13,
+    "fields": {
+        "turma": 1,
+        "nome": "LUIS GUSTAVO DO CARMO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 14,
+    "fields": {
+        "turma": 1,
+        "nome": "MANOEL FRANCISCO DO NASCIMENTO LOPES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 15,
+    "fields": {
+        "turma": 1,
+        "nome": "NATHAN DE OLIVEIRA VIEIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 16,
+    "fields": {
+        "turma": 1,
+        "nome": "NICOLLAS EDUARDO OLIVEIRA DE SOUZA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 17,
+    "fields": {
+        "turma": 1,
+        "nome": "PABLO BARSOTTI CAMPOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 18,
+    "fields": {
+        "turma": 1,
+        "nome": "RAFAEL SOUZA DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 19,
+    "fields": {
+        "turma": 1,
+        "nome": "RYAN RIQUELME NUNES PEREIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 20,
+    "fields": {
+        "turma": 1,
+        "nome": "SAMIRA DE CAMPOS VALERIANO DA SILVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 21,
+    "fields": {
+        "turma": 1,
+        "nome": "THAUAN RIOLI CANDIDO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 22,
+    "fields": {
+        "turma": 1,
+        "nome": "YAGO PEREIRA VIANA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 23,
+    "fields": {
+        "turma": 2,
+        "nome": "ANA BEATRIZ SOUSA CASTRO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 24,
+    "fields": {
+        "turma": 2,
+        "nome": "ANJOLITA APARECIDA GALDINO MORAIS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 25,
+    "fields": {
+        "turma": 2,
+        "nome": "CAIO FELIX DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 26,
+    "fields": {
+        "turma": 2,
+        "nome": "CLEVERTON DE OLIVEIRA SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 27,
+    "fields": {
+        "turma": 2,
+        "nome": "DAVI SCARAMUZZA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 28,
+    "fields": {
+        "turma": 2,
+        "nome": "DAVID COSMO DA SILVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 29,
+    "fields": {
+        "turma": 2,
+        "nome": "DAVID SILVA RAMOS DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 30,
+    "fields": {
+        "turma": 2,
+        "nome": "ENZO HURI RANNA DA SILVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 31,
+    "fields": {
+        "turma": 2,
+        "nome": "EVELLYN CRUZ DA SILVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 32,
+    "fields": {
+        "turma": 2,
+        "nome": "GABRIEL TAVARES DE SOUZA HOLANDA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 33,
+    "fields": {
+        "turma": 2,
+        "nome": "GABRIELA CESAR SILVEIRA LEITE",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 34,
+    "fields": {
+        "turma": 2,
+        "nome": "GABRIELA SANTOS GOMES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 35,
+    "fields": {
+        "turma": 2,
+        "nome": "GUILHERME PASSOS DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 36,
+    "fields": {
+        "turma": 2,
+        "nome": "GUSTAVO LISBOA DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 37,
+    "fields": {
+        "turma": 2,
+        "nome": "IGOR SOUSA CARDOSO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 38,
+    "fields": {
+        "turma": 2,
+        "nome": "IGOR SOUZA AMPARO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 39,
+    "fields": {
+        "turma": 2,
+        "nome": "IVAN DOS SANTOS NUNES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 40,
+    "fields": {
+        "turma": 2,
+        "nome": "JENNIFER RIKELLY ROCHA DA CONCEICAO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 41,
+    "fields": {
+        "turma": 2,
+        "nome": "JOAO GABRIEL BARBOSA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 42,
+    "fields": {
+        "turma": 2,
+        "nome": "JOAO PEDRO MARTINS DE MARIA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 43,
+    "fields": {
+        "turma": 2,
+        "nome": "JOSE WELITHON SILVA REIS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 44,
+    "fields": {
+        "turma": 2,
+        "nome": "KAUE ALVES VIEIRA OLIVEIRA MENDONCA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 45,
+    "fields": {
+        "turma": 2,
+        "nome": "KAYKY SOUZA DE CARVALHO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 46,
+    "fields": {
+        "turma": 2,
+        "nome": "KAYRON BOZOLO VIANA DA COSTA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 47,
+    "fields": {
+        "turma": 2,
+        "nome": "LARISSA GIOVANA LOPES",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 48,
+    "fields": {
+        "turma": 2,
+        "nome": "LUIZ FERNANDO DOS SANTOS TONETTI",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 49,
+    "fields": {
+        "turma": 2,
+        "nome": "MARCOS ANTONIO DE OLIVEIRA FORTUNA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 50,
+    "fields": {
+        "turma": 2,
+        "nome": "MARIA CLARA DE SOUZA RANNA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 51,
+    "fields": {
+        "turma": 2,
+        "nome": "MARIAH ISADORA LIMA SALGADO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 52,
+    "fields": {
+        "turma": 2,
+        "nome": "MATEUS BARBOSA DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 53,
+    "fields": {
+        "turma": 2,
+        "nome": "MIGUEL MIRANDA CALADO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 54,
+    "fields": {
+        "turma": 2,
+        "nome": "NICOLLY ALMEIDA DO NASCIMENTO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 55,
+    "fields": {
+        "turma": 2,
+        "nome": "PABLO GONCALVES NASCIMENTO",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 56,
+    "fields": {
+        "turma": 2,
+        "nome": "PEDRO HENRIQUE DOS SANTOS PEREIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 57,
+    "fields": {
+        "turma": 2,
+        "nome": "RAFAEL GUIMARAES ALVES MOREIRA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 58,
+    "fields": {
+        "turma": 2,
+        "nome": "RAPHAEL FERREIRA DOS SANTOS",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 59,
+    "fields": {
+        "turma": 2,
+        "nome": "SARA GONÇALVES SILVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 60,
+    "fields": {
+        "turma": 2,
+        "nome": "STEFANI MARIA DA SILVA SOUZA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.aluno",
+    "pk": 61,
+    "fields": {
+        "turma": 2,
+        "nome": "VITORIA DOS SANTOS VILA NOVA",
+        "situacao": "Ativo"
+    }
+},
+{
+    "model": "boletim.disciplina",
+    "pk": 1,
+    "fields": {
+        "nome": "BACK-END"
+    }
+},
+{
+    "model": "boletim.disciplina",
+    "pk": 2,
+    "fields": {
+        "nome": "CARREIRA"
+    }
+},
+{
+    "model": "boletim.disciplina",
+    "pk": 3,
+    "fields": {
+        "nome": "LÓGICA"
+    }
+},
+{
+    "model": "boletim.disciplina",
+    "pk": 4,
+    "fields": {
+        "nome": "METODOLOGIAS ÁGEIS"
+    }
+},
+{
+    "model": "boletim.disciplina",
+    "pk": 5,
+    "fields": {
+        "nome": "REDES"
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 1,
+    "fields": {
+        "aluno": 1,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 2,
+    "fields": {
+        "aluno": 2,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 3,
+    "fields": {
+        "aluno": 3,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 2.5,
+        "avaliacao": 2.5,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 4,
+    "fields": {
+        "aluno": 4,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": 7.0,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 5,
+    "fields": {
+        "aluno": 5,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 6,
+    "fields": {
+        "aluno": 6,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": 7.0,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 7,
+    "fields": {
+        "aluno": 7,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 0.0,
+        "conceito": 0.0,
+        "media_final": 0.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 8,
+    "fields": {
+        "aluno": 8,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 7.5,
+        "avaliacao": 7.5,
+        "trabalho": 6.0,
+        "conceito": 7.0,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 9,
+    "fields": {
+        "aluno": 9,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 7.5,
+        "avaliacao": 7.5,
+        "trabalho": 7.0,
+        "conceito": 7.0,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 10,
+    "fields": {
+        "aluno": 10,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 9.0,
+        "conceito": 9.0,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 11,
+    "fields": {
+        "aluno": 11,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 12,
+    "fields": {
+        "aluno": 12,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": 7.0,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 13,
+    "fields": {
+        "aluno": 13,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": 6.0,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 14,
+    "fields": {
+        "aluno": 14,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 15,
+    "fields": {
+        "aluno": 15,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": 7.0,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 16,
+    "fields": {
+        "aluno": 16,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 10.0,
+        "conceito": 6.0,
+        "media_final": 10.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 17,
+    "fields": {
+        "aluno": 17,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 8.0,
+        "conceito": 7.0,
+        "media_final": 7.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 18,
+    "fields": {
+        "aluno": 18,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 8.0,
+        "conceito": 6.0,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 19,
+    "fields": {
+        "aluno": 19,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": 6.0,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 20,
+    "fields": {
+        "aluno": 20,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 2.5,
+        "avaliacao": 2.5,
+        "trabalho": 10.0,
+        "conceito": 9.0,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 21,
+    "fields": {
+        "aluno": 21,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": 6.0,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 22,
+    "fields": {
+        "aluno": 22,
+        "disciplina": 1,
+        "bimestre": 2,
+        "prova_paulista": 2.5,
+        "avaliacao": 2.5,
+        "trabalho": 6.0,
+        "conceito": 6.0,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 23,
+    "fields": {
+        "aluno": 23,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 24,
+    "fields": {
+        "aluno": 24,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 25,
+    "fields": {
+        "aluno": 25,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 5.65,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 26,
+    "fields": {
+        "aluno": 26,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 27,
+    "fields": {
+        "aluno": 27,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 28,
+    "fields": {
+        "aluno": 28,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 29,
+    "fields": {
+        "aluno": 29,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 3.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 30,
+    "fields": {
+        "aluno": 30,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.45,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 31,
+    "fields": {
+        "aluno": 31,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 7.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 32,
+    "fields": {
+        "aluno": 32,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 4.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 33,
+    "fields": {
+        "aluno": 33,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 8.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 34,
+    "fields": {
+        "aluno": 34,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 35,
+    "fields": {
+        "aluno": 35,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.7,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 36,
+    "fields": {
+        "aluno": 36,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.7,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 37,
+    "fields": {
+        "aluno": 37,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 38,
+    "fields": {
+        "aluno": 38,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 39,
+    "fields": {
+        "aluno": 39,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 4.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 40,
+    "fields": {
+        "aluno": 40,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 41,
+    "fields": {
+        "aluno": 41,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 42,
+    "fields": {
+        "aluno": 42,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 7.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 43,
+    "fields": {
+        "aluno": 43,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 44,
+    "fields": {
+        "aluno": 44,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 45,
+    "fields": {
+        "aluno": 45,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 3.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 46,
+    "fields": {
+        "aluno": 46,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 47,
+    "fields": {
+        "aluno": 47,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 5.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 48,
+    "fields": {
+        "aluno": 48,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 49,
+    "fields": {
+        "aluno": 49,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 50,
+    "fields": {
+        "aluno": 50,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 51,
+    "fields": {
+        "aluno": 51,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 52,
+    "fields": {
+        "aluno": 52,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 53,
+    "fields": {
+        "aluno": 53,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 54,
+    "fields": {
+        "aluno": 54,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 55,
+    "fields": {
+        "aluno": 55,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 4.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 56,
+    "fields": {
+        "aluno": 56,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 3.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 57,
+    "fields": {
+        "aluno": 57,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 8.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 58,
+    "fields": {
+        "aluno": 58,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.7,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 59,
+    "fields": {
+        "aluno": 59,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 5.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 60,
+    "fields": {
+        "aluno": 60,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 61,
+    "fields": {
+        "aluno": 61,
+        "disciplina": 2,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 62,
+    "fields": {
+        "aluno": 23,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 63,
+    "fields": {
+        "aluno": 24,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 64,
+    "fields": {
+        "aluno": 25,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 65,
+    "fields": {
+        "aluno": 26,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 10.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 66,
+    "fields": {
+        "aluno": 27,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 67,
+    "fields": {
+        "aluno": 28,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 68,
+    "fields": {
+        "aluno": 29,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 69,
+    "fields": {
+        "aluno": 30,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 70,
+    "fields": {
+        "aluno": 31,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 71,
+    "fields": {
+        "aluno": 32,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 72,
+    "fields": {
+        "aluno": 33,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 73,
+    "fields": {
+        "aluno": 34,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 74,
+    "fields": {
+        "aluno": 35,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 4.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 75,
+    "fields": {
+        "aluno": 36,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 76,
+    "fields": {
+        "aluno": 37,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 77,
+    "fields": {
+        "aluno": 38,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 78,
+    "fields": {
+        "aluno": 39,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 79,
+    "fields": {
+        "aluno": 40,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 10.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 80,
+    "fields": {
+        "aluno": 41,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 81,
+    "fields": {
+        "aluno": 42,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 82,
+    "fields": {
+        "aluno": 43,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 83,
+    "fields": {
+        "aluno": 44,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 84,
+    "fields": {
+        "aluno": 45,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 85,
+    "fields": {
+        "aluno": 46,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 86,
+    "fields": {
+        "aluno": 47,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 87,
+    "fields": {
+        "aluno": 48,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 88,
+    "fields": {
+        "aluno": 49,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 89,
+    "fields": {
+        "aluno": 50,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 10.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 90,
+    "fields": {
+        "aluno": 51,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 91,
+    "fields": {
+        "aluno": 52,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 92,
+    "fields": {
+        "aluno": 53,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 93,
+    "fields": {
+        "aluno": 54,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 94,
+    "fields": {
+        "aluno": 55,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 95,
+    "fields": {
+        "aluno": 56,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 96,
+    "fields": {
+        "aluno": 57,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 97,
+    "fields": {
+        "aluno": 58,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 98,
+    "fields": {
+        "aluno": 59,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 99,
+    "fields": {
+        "aluno": 60,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 100,
+    "fields": {
+        "aluno": 61,
+        "disciplina": 3,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 101,
+    "fields": {
+        "aluno": 23,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 3.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 102,
+    "fields": {
+        "aluno": 24,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 3.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 103,
+    "fields": {
+        "aluno": 25,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 104,
+    "fields": {
+        "aluno": 26,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 7.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 105,
+    "fields": {
+        "aluno": 27,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 106,
+    "fields": {
+        "aluno": 28,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 107,
+    "fields": {
+        "aluno": 29,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 3.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 108,
+    "fields": {
+        "aluno": 30,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 8.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 109,
+    "fields": {
+        "aluno": 31,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 6.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 110,
+    "fields": {
+        "aluno": 32,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 3.0,
+        "conceito": null,
+        "media_final": 2.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 111,
+    "fields": {
+        "aluno": 33,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 112,
+    "fields": {
+        "aluno": 34,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 113,
+    "fields": {
+        "aluno": 35,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 4.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 114,
+    "fields": {
+        "aluno": 36,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 8.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 115,
+    "fields": {
+        "aluno": 37,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 116,
+    "fields": {
+        "aluno": 38,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 5.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 117,
+    "fields": {
+        "aluno": 39,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 4.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 118,
+    "fields": {
+        "aluno": 40,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 8.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 119,
+    "fields": {
+        "aluno": 41,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 2.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 120,
+    "fields": {
+        "aluno": 42,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.6,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 121,
+    "fields": {
+        "aluno": 43,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 2.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 122,
+    "fields": {
+        "aluno": 44,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 3.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 123,
+    "fields": {
+        "aluno": 45,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 124,
+    "fields": {
+        "aluno": 46,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 5.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 125,
+    "fields": {
+        "aluno": 47,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 6.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 126,
+    "fields": {
+        "aluno": 48,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 5.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 127,
+    "fields": {
+        "aluno": 49,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 9.1,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 128,
+    "fields": {
+        "aluno": 50,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 8.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 129,
+    "fields": {
+        "aluno": 51,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 2.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 130,
+    "fields": {
+        "aluno": 52,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 5.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 131,
+    "fields": {
+        "aluno": 53,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 132,
+    "fields": {
+        "aluno": 54,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 9.2,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 133,
+    "fields": {
+        "aluno": 55,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 4.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 134,
+    "fields": {
+        "aluno": 56,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 2.9,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 135,
+    "fields": {
+        "aluno": 57,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 8.4,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 136,
+    "fields": {
+        "aluno": 58,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 2.8,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 137,
+    "fields": {
+        "aluno": 59,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 5.0,
+        "avaliacao": 5.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 138,
+    "fields": {
+        "aluno": 60,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.3,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 139,
+    "fields": {
+        "aluno": 61,
+        "disciplina": 4,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 2.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 140,
+    "fields": {
+        "aluno": 23,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 141,
+    "fields": {
+        "aluno": 24,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 3.0,
+        "conceito": null,
+        "media_final": 4.835,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 142,
+    "fields": {
+        "aluno": 25,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 143,
+    "fields": {
+        "aluno": 26,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 10.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 144,
+    "fields": {
+        "aluno": 27,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 145,
+    "fields": {
+        "aluno": 28,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 3.0,
+        "conceito": null,
+        "media_final": 3.165,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 146,
+    "fields": {
+        "aluno": 29,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 147,
+    "fields": {
+        "aluno": 30,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.335,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 148,
+    "fields": {
+        "aluno": 31,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 149,
+    "fields": {
+        "aluno": 32,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 150,
+    "fields": {
+        "aluno": 33,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 151,
+    "fields": {
+        "aluno": 34,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 152,
+    "fields": {
+        "aluno": 35,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 4.0,
+        "conceito": null,
+        "media_final": 4.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 153,
+    "fields": {
+        "aluno": 36,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 154,
+    "fields": {
+        "aluno": 37,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 155,
+    "fields": {
+        "aluno": 38,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 156,
+    "fields": {
+        "aluno": 39,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 157,
+    "fields": {
+        "aluno": 40,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 158,
+    "fields": {
+        "aluno": 41,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 159,
+    "fields": {
+        "aluno": 42,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 160,
+    "fields": {
+        "aluno": 43,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 161,
+    "fields": {
+        "aluno": 44,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 162,
+    "fields": {
+        "aluno": 45,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 163,
+    "fields": {
+        "aluno": 46,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 7.335,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 164,
+    "fields": {
+        "aluno": 47,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 165,
+    "fields": {
+        "aluno": 48,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.835,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 166,
+    "fields": {
+        "aluno": 49,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 167,
+    "fields": {
+        "aluno": 50,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 10.0,
+        "conceito": null,
+        "media_final": 9.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 168,
+    "fields": {
+        "aluno": 51,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 5.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 169,
+    "fields": {
+        "aluno": 52,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 0.0,
+        "avaliacao": 0.0,
+        "trabalho": 5.0,
+        "conceito": null,
+        "media_final": 4.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 170,
+    "fields": {
+        "aluno": 53,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 171,
+    "fields": {
+        "aluno": 54,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 172,
+    "fields": {
+        "aluno": 55,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 6.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 173,
+    "fields": {
+        "aluno": 56,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 174,
+    "fields": {
+        "aluno": 57,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 10.0,
+        "avaliacao": 10.0,
+        "trabalho": 7.0,
+        "conceito": null,
+        "media_final": 7.5,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 175,
+    "fields": {
+        "aluno": 58,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 6.335,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 176,
+    "fields": {
+        "aluno": 59,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 8.0,
+        "conceito": null,
+        "media_final": 8.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 177,
+    "fields": {
+        "aluno": 60,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 6.67,
+        "avaliacao": 6.67,
+        "trabalho": 9.0,
+        "conceito": null,
+        "media_final": 9.0,
+        "faltas": 0
+    }
+},
+{
+    "model": "boletim.registroboletim",
+    "pk": 178,
+    "fields": {
+        "aluno": 61,
+        "disciplina": 5,
+        "bimestre": 2,
+        "prova_paulista": 3.33,
+        "avaliacao": 3.33,
+        "trabalho": 6.0,
+        "conceito": null,
+        "media_final": 5.5,
+        "faltas": 0
+    }
+}
+]

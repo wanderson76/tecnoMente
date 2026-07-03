@@ -18,24 +18,23 @@ def listar_turmas(request):
     ]
     return JsonResponse(dados, safe=False)
 
-
 @api_view(['GET'])
 def dashboard_analytics_completo(request, turma_id):
     """
-    Endpoint corrigido que busca os dados diretamente das tabelas do Django
-    usando as colunas corretas (media_final e faltas).
+    Endpoint com tipagem explícita (COALESCE e CAST) para garantir 
+    compatibilidade 100% estrita com o PostgreSQL da Railway.
     """
     dados_dashboard = {}
 
     with connection.cursor() as cursor:
         
-        # 👑 1. FILTRO: Os 10 Melhores Alunos (Média Global + Assiduidade)
+        # 👑 1. FILTRO: Os 10 Melhores Alunos
         cursor.execute("""
             SELECT 
                 a.id AS id,
                 a.nome AS nome,
-                ROUND(AVG(rb.media_final), 2) AS media_global,
-                SUM(rb.faltas) AS total_faltas
+                COALESCE(ROUND(AVG(rb.media_final)::numeric, 2), 0.0) AS media_global,
+                COALESCE(SUM(rb.faltas), 0) AS total_faltas
             FROM boletim_registroboletim rb
             INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
             WHERE a.turma_id = %s AND a.situacao = 'Ativo'
@@ -52,8 +51,8 @@ def dashboard_analytics_completo(request, turma_id):
             SELECT 
                 a.id AS id,
                 a.nome AS nome,
-                ROUND(AVG(rb.media_final), 2) AS media_global,
-                SUM(rb.faltas) AS total_faltas
+                COALESCE(ROUND(AVG(rb.media_final)::numeric, 2), 0.0) AS media_global,
+                COALESCE(SUM(rb.faltas), 0) AS total_faltas
             FROM boletim_registroboletim rb
             INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
             WHERE a.turma_id = %s AND a.situacao = 'Ativo'
@@ -62,16 +61,22 @@ def dashboard_analytics_completo(request, turma_id):
             ORDER BY media_global ASC;
         """, [turma_id])
         colunas_rec = [col[0] for col in cursor.description]
-        dados_dashboard['alunos_recuperacao'] = [dict(zip(colunas_rec, row)) for row in cursor.fetchall()]
+        
+        alunos_rec = []
+        for row in cursor.fetchall():
+            item = dict(zip(colunas_rec, row))
+            item['materias_recuperacao'] = "Geral"  
+            alunos_rec.append(item)
+        dados_dashboard['alunos_recuperacao'] = alunos_rec
 
 
-        # 🚨 3. FILTRO: Alunos que Precisam de Atenção Urgente (Evasão / Faltas Elevadas)
+        # 🚨 3. FILTRO: Alunos que Precisam de Atenção Urgente
         cursor.execute("""
             SELECT 
                 a.id AS id,
                 a.nome AS nome,
-                ROUND(AVG(rb.media_final), 2) AS media_global,
-                SUM(rb.faltas) AS total_faltas
+                COALESCE(ROUND(AVG(rb.media_final)::numeric, 2), 0.0) AS media_global,
+                COALESCE(SUM(rb.faltas), 0) AS total_faltas
             FROM boletim_registroboletim rb
             INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
             WHERE a.turma_id = %s AND a.situacao = 'Ativo'
@@ -83,21 +88,35 @@ def dashboard_analytics_completo(request, turma_id):
         dados_dashboard['alunos_atencao'] = [dict(zip(colunas_aten, row)) for row in cursor.fetchall()]
 
 
-        # 📈 4. KPIs Gerais da Turma (Cards do Topo do Painel)
+        # 📈 4. KPIs Gerais da Turma
         cursor.execute("""
             SELECT 
                 COUNT(DISTINCT rb.aluno_id) AS qtd_alunos,
-                ROUND(AVG(rb.media_final), 2) AS media_geral_turma
+                COALESCE(ROUND(AVG(rb.media_final)::numeric, 2), 0.0) AS media_geral_turma
             FROM boletim_registroboletim rb
             INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
             WHERE a.turma_id = %s;
         """, [turma_id])
         colunas_kpi = [col_desc[0] for col_desc in cursor.description]
         res_kpi = cursor.fetchone()
-        dados_dashboard['kpis'] = dict(zip(colunas_kpi, res_kpi)) if res_kpi else {}
+        dados_dashboard['kpis'] = dict(zip(colunas_kpi, res_kpi)) if res_kpi else {"qtd_alunos": 0, "media_geral_turma": 0.0}
+
+
+        # 📊 5. Média por Disciplina
+        cursor.execute("""
+            SELECT 
+                d.nome AS nome,
+                COALESCE(ROUND(AVG(rb.media_final)::numeric, 2), 0.0) AS media
+            FROM boletim_registroboletim rb
+            INNER JOIN boletim_disciplina d ON rb.disciplina_id = d.id
+            INNER JOIN boletim_aluno a ON rb.aluno_id = a.id
+            WHERE a.turma_id = %s
+            GROUP BY d.nome;
+        """, [turma_id])
+        colunas_disc = [col[0] for col in cursor.description]
+        dados_dashboard['medias_por_disciplina'] = [dict(zip(colunas_disc, row)) for row in cursor.fetchall()]
 
     return JsonResponse(dados_dashboard, safe=False)
-
 
 @api_view(['GET'])
 def radar_aluno_disciplinas(request, aluno_id):
